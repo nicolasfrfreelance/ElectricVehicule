@@ -4,7 +4,7 @@ import {
   BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, 
   Tooltip, Legend, ResponsiveContainer 
 } from 'recharts';
-import { YearlyData } from '@/types';
+import { YearlyData } from '@/src/types';
 import { BarChart3, LineChart, TrendingUp, Table } from 'lucide-react';
 
 export default function ChartTabs({ data }: { data: YearlyData[] }) {
