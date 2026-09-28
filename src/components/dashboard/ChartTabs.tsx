@@ -4,7 +4,7 @@ import {
   BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, 
   Tooltip, Legend, ResponsiveContainer 
 } from 'recharts';
-import { YearlyData } from '@/src/types';
+import { YearlyData } from '@/types';
 import { BarChart3, LineChart, TrendingUp, Table } from 'lucide-react';
 
 export default function ChartTabs({ data }: { data: YearlyData[] }) {
@@ -60,7 +60,7 @@ export default function ChartTabs({ data }: { data: YearlyData[] }) {
         </button>
       </div>
 
-      {/* RENDER DES GRAPHISTES SELON L'ONGLET SÉLECTIONNÉ */}
+      {/* GRAPHISMES ET DÉTAILS */}
       <div className="flex-1 w-full min-h-[360px]">
         
         {/* VUE 1 : CUMUL DES DÉPENSES */}
@@ -73,7 +73,7 @@ export default function ChartTabs({ data }: { data: YearlyData[] }) {
               <Tooltip 
                 cursor={{ fill: '#0f172a' }}
                 contentStyle={{ backgroundColor: '#020617', borderRadius: '12px', border: '1px solid #1e293b', color: '#f8fafc' }}
-                formatter={(val: number) => [`${val.toLocaleString()} €`, undefined]}
+                formatter={(val: any) => [`${Number(val || 0).toLocaleString()} €`, undefined]}
               />
               <Legend iconType="circle" wrapperStyle={{ paddingTop: '15px', fontSize: '12px', color: '#94a3b8' }} />
               <Bar dataKey="Thermique" fill="#475569" radius={[4, 4, 0, 0]} name="Cumul Thermique" />
@@ -92,7 +92,7 @@ export default function ChartTabs({ data }: { data: YearlyData[] }) {
               <Tooltip 
                 cursor={{ fill: '#0f172a' }}
                 contentStyle={{ backgroundColor: '#020617', borderRadius: '12px', border: '1px solid #1e293b', color: '#f8fafc' }}
-                formatter={(val: number) => [`${val.toLocaleString()} € / an`, undefined]}
+                formatter={(val: any) => [`${Number(val || 0).toLocaleString()} € / an`, undefined]}
               />
               <Legend iconType="circle" wrapperStyle={{ paddingTop: '15px', fontSize: '12px', color: '#94a3b8' }} />
               <Bar dataKey="annualIceCost" fill="#f59e0b" radius={[4, 4, 0, 0]} name="Budget Annuel Thermique" />
@@ -101,7 +101,7 @@ export default function ChartTabs({ data }: { data: YearlyData[] }) {
           </ResponsiveContainer>
         )}
 
-        {/* VUE 3 : GAIN NET CUMULÉ (COURBE DE RENTABILITÉ) */}
+        {/* VUE 3 : GAIN NET CUMULÉ */}
         {activeTab === 'savings' && (
           <ResponsiveContainer width="100%" height={360}>
             <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
@@ -117,7 +117,7 @@ export default function ChartTabs({ data }: { data: YearlyData[] }) {
               <Tooltip 
                 cursor={{ stroke: '#334155' }}
                 contentStyle={{ backgroundColor: '#020617', borderRadius: '12px', border: '1px solid #1e293b', color: '#f8fafc' }}
-                formatter={(val: number) => [`${val.toLocaleString()} €`, 'Gain Net Cumulé']}
+                formatter={(val: any) => [`${Number(val || 0).toLocaleString()} €`, 'Gain Net Cumulé']}
               />
               <Area type="monotone" dataKey="netSavingsCumulated" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorSavings)" name="Économies Nettes (€)" />
             </AreaChart>
